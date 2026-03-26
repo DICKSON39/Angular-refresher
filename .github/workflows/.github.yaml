@@ -1,0 +1,47 @@
+name: Angular frontend CI/CD
+
+on:
+    push:
+        branches: ['main']
+            
+    pull_request:
+        branches:  ['main']
+
+        
+jobs:
+    build:
+     runs-on: ubuntu-latest
+
+     strategy:
+        matrix:
+            node-version: [20.x]
+     steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+      
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+            node-version: ${{matrix.node-version}}
+            cache: 'npm'
+       
+      - name: Install angular Cli
+        run: npm install -g @angular/cli
+      
+      - name: Install required Angular dependencies
+        run: npm ci
+      
+      - name: Building angular
+        run: npm run build
+
+      - name: Deploy my project to vercel
+        if: github.event_name == 'push'
+        run: curl -X POST ${{secrets.VECEL_DEPLOY_HOOK}}
+
+      - name: Output Deployment URL
+        run: echo "Live URL:${{ steps.deploy.outputs.website-url }}"
+
+    
+
+
+

@@ -1,0 +1,86 @@
+.tableMain {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.myt {
+  width: 90%;
+  max-width: 1000px;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tbl thead {
+  background: #4f46e5; /* nice indigo */
+  color: white;
+}
+
+.tbl th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tbl td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #333;
+}
+
+.tbl tbody tr {
+  transition: background 0.2s ease;
+}
+
+.tbl tbody tr:hover {
+  background: #f5f7ff;
+}
+
+/* zebra stripes */
+.tbl tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* responsive tweak */
+@media (max-width: 768px) {
+  .tbl th, 
+  .tbl td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+.search-box {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-box input {
+  padding: 10px 14px;
+  width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+.search-box input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}

@@ -1,0 +1,15 @@
+name: 'Deploy to Vercel Website'
+description: 'Trigger Vercel deployment'
+
+inputs:
+  deploy-hook:
+    description: 'Vercel deployment process'
+    required: true
+
+outputs:
+  website-url:
+    description: 'Live URL of the website'
+
+runs:
+  using: 'node16'
+  main: 'main.js'

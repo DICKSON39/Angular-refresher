@@ -1,0 +1,25 @@
+<div class="search-box">
+  <input 
+    type="text" 
+    placeholder="Search A job..." 
+    [(ngModel)]="searchInput"
+  />
+</div>
+
+<div class="hotel-grid">
+  @for (item of filterHotels(); track $index) {
+    <div class="hotel-card">
+      <div class="card-content">
+        <h4 class="card-title">Hotel Name: {{item.name}}</h4>
+        <p class="card-price" >Hotel Location: {{item.location}}</p>
+        <p class="card-category" >Hotel has parking: {{item.parking}}</p>
+        <p class="card-category"> Number of rooms: {{item.noOfRooms}}</p>
+
+        <p class="card-date">{{item.createdAt | date: 'short'}}</p>
+        
+      
+      </div>
+    </div>
+  }
+</div>
+

@@ -1,0 +1,57 @@
+<!-- interpolation using  Data Binding -->
+
+<div class="row">
+  <div class="col-3">
+    <p>Am using: {{ firstName }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>it si version: {{ angularVersion }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>Release Date: {{ currentDate }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>Year of installing {{ yearOfInstall }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>is it active = {{ isActive }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>You have selected: {{ selectedState }}</p>
+  </div>
+
+  <div class="col-3">
+    <p>what is your style: {{ style }}</p>
+  </div>
+
+  <!-- interpolation using  Property Binding -->
+  <div class="col-3">
+    <input [type]="inputType" />
+  </div>
+
+  <div class="col-3">
+    <input type="text" [value]="firstName" />
+  </div>
+
+  <!-- interpolation using  Two Data Binding  only used in input elements-->
+  <div class="col-3">
+    <input type="text" [(ngModel)]="firstName" />
+  </div>
+
+  <div class="col-3">
+    <select [(ngModel)]="selectedState">
+      <option value="Hp">Hp</option>
+      <option value="Mac">Mac</option>
+      <option value="Dell">Dell</option>
+    </select>
+  </div>
+</div>
+
+<!-- interpolation using  Event Binding  s-->
+<button (click)="showWelcomeAlert()">Click Me!</button>
+<button (click)="showMessage(message)">Click Me2!</button>

@@ -1,0 +1,128 @@
+
+
+
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List
+            </div>
+            <div class="card-body">
+                  <table class="tbl">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>role</th>
+                    <th>Action</th>
+                    
+                   
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (item of clientList; track $index) {
+                    <tr>
+                        <td>{{item._id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.role}}</td>
+                    <td>
+                        <button class="btn btn-danger" (click)="onDelete(item._id)">Delete</button>
+                        <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                    </td>
+
+                    
+                </tr>
+                }
+                
+                
+            </tbody>
+        </table>
+
+            </div>
+        </div>
+    </div>
+
+     <div class="col-4">
+        <form #form="ngForm"> 
+
+            <div class="card">
+            <div class="card-header bg-success">
+                New Client
+            </div>
+            <div class="col-6">
+                
+                <label for="">name</label>
+                <input [(ngModel)]="clientObj.name" type="text" required name="name" #personName="ngModel" minlength="5" class="form-control">
+                @if (personName.touched) {
+                    <div class="text-danger">
+                    @if(personName.errors?.['required']) {
+                         <span>This is Required</span>
+
+                    }
+                    @if(personName?.errors?.['minlength']) {
+                       <span>Minimum 6 characters are required </span>
+
+                    }
+                   
+
+                </div>
+
+                }
+                
+            </div>
+
+            <div class="col-6">
+                <label for="">email</label>
+                <input type="email" [(ngModel)]="clientObj.email" class="form-control" #personalEmail="ngModel" name="email" required >
+                 @if (personalEmail.touched) {
+                    <div class="text-danger">
+                    @if(personalEmail.errors?.['required']) {
+                         <span>This is Required</span>
+
+                    }
+                    @if(personalEmail?.errors?.['minlength']) {
+                       <span>Minimum 6 characters are required </span>
+
+                    }
+
+                   
+                   
+
+                </div>
+
+                }
+
+            </div>
+
+            <div class="col-6">
+                <label for=""> password</label>
+                <input type="password" [(ngModel)]="clientObj.password"  placeholder="........" class="form-control" name="password">
+            </div>
+
+
+            <div class="col-6">
+                <label for="">role</label>
+                <input [(ngModel)]="clientObj.role" type="text" class="form-control" name="role">
+            </div>
+            
+        </div>
+        <div class="row pt-2 tex-center">
+            <div class="col-6">
+                <button [disabled]="!form.valid" class="btn btn-success" (click)="onSaveClient()" >
+                    {{clientObj._id !=0 ? 'update client' : 'Save Client'}}
+                </button>
+            </div>
+
+            <div class="col-6">
+                <div class="btn btn-secondary">Reset</div>
+            </div>
+
+        </div>
+        </form>
+        
+    </div>
+</div>  

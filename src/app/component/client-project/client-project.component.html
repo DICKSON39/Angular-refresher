@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List <p>{{currentDate |date: 'dd-MMM-yy'}}</p>
+            </div>
+
+            
+            <div class="card-body">
+                  <table class="tbl">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>location</th>
+                    <th>noOfRooms</th>
+                    <th>parking</th>
+                    
+                   
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (item of hotelList; track $index) {
+
+                    <tr>
+                <td>{{item._id}}</td>
+                <td>{{item.name | uppercase}}</td>
+                <td>{{item.location}}</td>
+                <td>{{item.noOfRooms}}</td>
+                <td class="park">{{item.parking}}</td>
+              </tr>
+
+                }
+              
+                
+                
+            </tbody>
+        </table>
+
+            </div>
+        </div>
+    </div>
+
+     <div class="col-4">
+        <form [formGroup]="projectForm" > 
+
+            <div class="card">
+            <div class="card-header bg-success">
+                New Hotel
+            </div>
+            <div class="col-6" >
+                
+                <label for="">name</label>
+                <input  type="text" required name="name"  minlength="5" class="form-control" formControlName="name">
+                <div class="text-danger" *ngIf="projectForm.controls['name'].touched">
+                    <div class="text-danger" *ngIf="projectForm.controls['name'].errors?.['required']" >
+                    
+                    <span>required</span>
+
+                </div>
+                <div class="text-danger" *ngIf="projectForm.controls['name'].errors?.['minlength']" >
+                    
+                    <span>Minimum five characters</span>
+
+                </div>
+
+                </div>
+                
+               
+                
+            </div>
+
+            <div class="col-6">
+                <label for="">Location</label>
+                <input type="email"  class="form-control" name="email" required formControlName="location" >
+                
+
+            </div>
+
+            <div class="col-6">
+                <label for=""> Number Of rooms</label>
+                <input type="password"   placeholder="........" class="form-control" name="password" formControlName="noOfRooms">
+            </div>
+
+
+            <div class="col-6">
+                <label for="">parking</label>
+                <input  type="text" class="form-control"  formControlName="parking">
+            </div>
+            
+        </div>
+        <div class="row pt-2 tex-center">
+            <div class="col-6">
+                <button  class="btn btn-success" (click)="onSave()"  [disabled]="projectForm.invalid" >
+                    save
+                </button>
+            </div>
+
+            <div class="col-6">
+                <div class="btn btn-secondary">Reset</div>
+            </div>
+
+            <div class="col-6">
+                <label for="">Options</label>
+                <select formControlName="location" class="form-control">
+                    <option value="">Select Location</option>
+                    @for (item of hotelList; track $index) {
+                        <option [value]="item.location">{{item.location}} - {{item.name}}</option>
+                    }
+
+                </select>
+
+            </div>
+
+        </div>
+        </form>
+        
+    </div>
+</div>  
