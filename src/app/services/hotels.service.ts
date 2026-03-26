@@ -11,12 +11,12 @@ export class HotelsService {
   constructor(private http:HttpClient) { }
 
   getAllHouses ():Observable<HotelResponse> {
-    return this.http.get<HotelResponse>(`http://localhost:5000/api/hotel`)
+    return this.http.get<HotelResponse>(`https://mongodbapp-bsl9.onrender.com/api/hotel`)
 
     
   }
 
   addHotel (obj:hotel):Observable<HotelResponse> {
-     return this.http.post<HotelResponse>(`http://localhost:5000/api/hotel`,obj)
+     return this.http.post<HotelResponse>(`https://mongodbapp-bsl9.onrender.com/api/hotel`,obj)
   }
 }

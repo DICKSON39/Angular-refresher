@@ -12,6 +12,6 @@ export class MasterService {
   constructor(private http: HttpClient) { }
 
   getDesignations():Observable<ApiResponse> {
-    return this.http.get<ApiResponse>('http://localhost:5000/api/products')
+    return this.http.get<ApiResponse>('https://mongodbapp-bsl9.onrender.com/api/products')
   }
 }

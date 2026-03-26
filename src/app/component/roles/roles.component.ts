@@ -24,7 +24,7 @@ export class RolesComponent implements OnInit {
   }
 
   getAllRoles () {
-    this.http.get<ApiResponse>('http://localhost:5000/api/products').subscribe((res:ApiResponse)=> {
+    this.http.get<ApiResponse>('https://mongodbapp-bsl9.onrender.com/api/products').subscribe((res:ApiResponse)=> {
    this.roleList = res.data
 
     }, error => {

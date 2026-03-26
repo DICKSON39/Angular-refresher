@@ -1,3 +1,3 @@
 export const environment = {
-    API_URL: 'http://localhost:5000/api/users/'
+    API_URL: 'https://mongodbapp-bsl9.onrender.com/api/users/'
 };
