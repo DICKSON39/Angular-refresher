@@ -1,47 +1,38 @@
-name: Angular frontend CI/CD
+name: Angular Frontend CI/CD
 
 on:
-    push:
-        branches: ['main']
-            
-    pull_request:
-        branches:  ['main']
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
 
-        
 jobs:
-    build:
-     runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-     strategy:
-        matrix:
-            node-version: [20.x]
-     steps:
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
-      
-      - name: Use Node.js ${{matrix.node-version}}
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-            node-version: ${{matrix.node-version}}
-            cache: 'npm'
-       
-      - name: Install angular Cli
-        run: npm install -g @angular/cli
-      
-      - name: Install required Angular dependencies
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
         run: npm ci
-      
-      - name: Building angular
-        run: npm run build
 
-      - name: Deploy my project to vercel
+      - name: Build Angular app
+        run: npx ng build
+
+      - name: Deploy to Vercel
         if: github.event_name == 'push'
-        run: curl -X POST ${{secrets.VECEL_DEPLOY_HOOK}}
+        run: curl -X POST ${{ secrets.VERCEL_DEPLOY_HOOK }}
 
-      - name: Output Deployment URL
-        run: echo "Live URL:${{ steps.deploy.outputs.website-url }}"
-
-    
-
-
-
+      - name: Confirm deployment trigger
+        run: echo "Deployment triggered 🚀"
